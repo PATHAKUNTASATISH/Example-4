@@ -6,7 +6,7 @@ import java.time.Period;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.GetMapping;
- 
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,7 +24,13 @@ public class Example4Controller {
 	  @GetMapping("/age")
 	  public String calculateAge(@RequestParam @DateTimeFormat(pattern="yyyy-MM-dd") LocalDate birthDate) {
 		  
-			return "your age is :"+Period.between(birthDate, LocalDate.now()).getYears();
-				   
+			return "your age is :"+Period.between(birthDate, LocalDate.now()).getYears();		   
     }
+	  
+	 @GetMapping("/bye")
+	 public String sayBye(@RequestParam String message) {
+		 return (message.equals("bye"))?"Bye world":"sorry";
+	 }
+	  
+	  
 }
